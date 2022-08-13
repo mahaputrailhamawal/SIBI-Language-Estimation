@@ -23,7 +23,7 @@ prev_frame_time = 0
 new_frame_time = 0
 
 # Load Model
-with open("C:/Users/User/Documents/SIBI_Lang/Model/svm_model.sav", 'rb') as file:
+with open("C:/Users/User/Documents/SIBI_Lang/Model/svm_model_v2.sav", 'rb') as file:
     action_model = pickle.load(file)
 
 # For webcam input:
@@ -70,12 +70,12 @@ with mp_hands.Hands(
         # Centering X coordinate Process
         for indexPoint in range(21):
           centering = np.append(centering, (
-            results.multi_hand_landmarks[0].landmark[0].x - results.multi_hand_landmarks[0].landmark[indexPoint].x))
+            results.multi_hand_landmarks[0].landmark[indexPoint].x - results.multi_hand_landmarks[0].landmark[0].x))
 
         # Centering Y coordinate Process
         for indexPoint in range(21):
           centering = np.append(centering, (
-            results.multi_hand_landmarks[0].landmark[0].y - results.multi_hand_landmarks[0].landmark[indexPoint].y))
+            results.multi_hand_landmarks[0].landmark[indexPoint].y - results.multi_hand_landmarks[0].landmark[0].y))
 
         centering = centering.reshape(2, 21)
         
@@ -93,7 +93,7 @@ with mp_hands.Hands(
         if len(hand_keypoint_data) >= 210:
           # Write spatiodata to csv
           # Uncomment 3 lines below to write hand keypoint
-          # with open('C:/Users/User/Documents/SIBI_Lang/C_Sibi_Lang.csv', 'a', newline='') as f:
+          # with open('C:/Users/User/Documents/SIBI_Lang/SIBI_Hand_Keypoints_Datasets/Hai_Sibi_Lang.csv', 'a', newline='') as f:
           #   writer = csv.writer(f, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
           #   writer.writerow(hand_keypoint_data)
 
