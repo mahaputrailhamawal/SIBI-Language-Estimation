@@ -3,6 +3,7 @@ import cv2
 import csv
 import time
 import pickle
+import pandas as pd
 import numpy as np
 import mediapipe as mp
 from sklearn import preprocessing
@@ -22,8 +23,12 @@ prev_frame_time = 0
 # used to record the time at which we processed current frame 
 new_frame_time = 0
 
+# read .csv dataset
+SIBI_Lang = pd.read_csv('C:/Users/User/Documents/SIBI_Lang/SIBI_Hand_Keypoints_Datasets/SIBI_Lang_Spatio.csv')
+labels = SIBI_Lang['classes'].unique()
+
 # Load Model
-with open("C:/Users/User/Documents/SIBI_Lang/Model/svm_model_v2.sav", 'rb') as file:
+with open("C:/Users/User/Documents/SIBI_Lang/Model/svm_model_v3.sav", 'rb') as file:
     action_model = pickle.load(file)
 
 # For webcam input:
@@ -37,6 +42,7 @@ with mp_hands.Hands(
   while cap.isOpened():
     # Capture frame-by-frame
     success, image = cap.read()
+    image = cv2.resize(image,(640,480))
     if not success:
       print("Ignoring empty camera frame.")
       # If loading a video, use 'break' instead of 'continue'.
@@ -93,13 +99,14 @@ with mp_hands.Hands(
         if len(hand_keypoint_data) >= 210:
           # Write spatiodata to csv
           # Uncomment 3 lines below to write hand keypoint
-          # with open('C:/Users/User/Documents/SIBI_Lang/SIBI_Hand_Keypoints_Datasets/Hai_Sibi_Lang.csv', 'a', newline='') as f:
+          # with open('C:/Users/User/Documents/SIBI_Lang/SIBI_Hand_Keypoints_Datasets/Ex_Hallo_Sibi_Lang.csv', 'a', newline='') as f:
           #   writer = csv.writer(f, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
           #   writer.writerow(hand_keypoint_data)
 
           prediction = action_model.predict([hand_keypoint_data])
+          print(prediction)
 
-          cv2.putText(image,f'{prediction[0]}', (10,50), cv2.FONT_HERSHEY_SIMPLEX, 2, (100, 255, 0), 3, cv2.LINE_AA)
+          cv2.putText(image,f'{labels[prediction[0]]}', (10,50), cv2.FONT_HERSHEY_SIMPLEX, 2, (100, 255, 0), 3, cv2.LINE_AA)
 
           # deleted 42 old data 
           deletedIndex = np.arange(42)
