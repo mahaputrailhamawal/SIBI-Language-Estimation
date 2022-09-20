@@ -30,5 +30,5 @@ Untuk ingin melihat video demonstrasi dari proyek ini bisa dilihat [disini](http
 
 ## <div>Saran</div>
 
-Pada proyek ini akan memprediksi bahasa isyarat yang sedang dilakukan oleh obyek. Untuk sekarang sistem ini mampu memprediksi bahasa isyarat dari huruf A, B, C, D, E, Hallo, dan Hai. Sistem ini akan terus diperbarui guna bisa memprediksi bahasa isyarat sesuai dari kamus yang dikeluarkan oleh kemendikbud tentang Sistem Isyarat Bahasa Indonesia / [SIBI](https://drive.google.com/file/d/18DpgE5vpjp3kihcZ48wzgN0cfSk5AUNo/view?usp=sharing)
+Pada proyek ini akan memprediksi bahasa isyarat yang sedang dilakukan oleh obyek. Untuk sekarang sistem ini mampu memprediksi bahasa isyarat dari huruf A, B, C, D, E, Hallo, dan Hai. Sistem ini akan terus diperbarui guna bisa memprediksi bahasa isyarat sesuai dari kamus yang dikeluarkan oleh kemendikbud tentang Sistem Isyarat Bahasa Indonesia / [SIBI](https://pmpk.kemdikbud.go.id/sibi/kosakata)
 
